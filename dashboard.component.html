@@ -1,0 +1,17 @@
+<div class="ui-g" *ngIf="yearlyEntitlements && yearlyEntitlements.length > 0">
+    <ul class="ui-g-12 ui-g-nopad no-desktop mobile-tabs no-select">
+        <li class="ui-g-6" [ngClass]="{'active' : mobileScreen === 0}" (click)="reveal(0)">
+            <p>Summary</p>
+        </li>
+        <li class="ui-g-6" [ngClass]="{'active' : mobileScreen === 1}" (click)="reveal(1)">
+            <p>Schedule</p>
+        </li>
+    </ul>
+    <div class="ui-g-12 ui-g-nopad ui-lg-6" [ngClass]="{'no-mobile' : mobileScreen !== 0}">
+        <leave-list [yearlyEntitlements]="yearlyEntitlements"></leave-list>
+    </div>
+    <div class="ui-g-12 ui-lg-6" [ngClass]="{'no-mobile' : mobileScreen !== 1}">
+        <leave-schedule [yearlyEntitlements]="yearlyEntitlements"></leave-schedule>
+    </div>
+</div>
+<app-wait-block *ngIf="!yearlyEntitlements"></app-wait-block>
